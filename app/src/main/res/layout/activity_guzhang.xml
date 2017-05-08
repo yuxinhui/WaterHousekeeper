@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#F7F7F9"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#48baef">
+
+        <ImageView
+            android:id="@+id/fanhui_img"
+            android:layout_width="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/jiantou" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="故障反馈"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+    <com.jinfukeji.waterhousekeeper.utils.EdittextActivity
+        android:id="@+id/lianxi_num"
+        android:layout_margin="10dp"
+        android:inputType="phone"
+        android:textColor="#000000"
+        android:hint="联系方式"
+        android:textColorHint="#cccccc"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <EditText
+        android:id="@+id/content_et"
+        android:background="@drawable/guzhang_edit_style"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:gravity="top"
+        android:padding="5dp"
+        android:hint="请填写故障描述信息"
+        android:textColorHint="#cccccc"
+        android:textColor="#000000"
+        android:minLines="5"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/guzhang_tijiao_btn"
+        android:layout_margin="10dp"
+        android:text="提交"
+        android:background="#48baef"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#48baef"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <TextView
+            android:text="冲洗"
+            android:textColor="#ffffff"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp" />
+        <ImageView
+            android:id="@+id/fanhui_img"
+            android:src="@mipmap/jiantou"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="25dp"
+            android:layout_height="20dp" />
+        <Button
+            android:id="@+id/chongxi_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_width="80dp"
+            android:text="冲洗"
+            android:background="@drawable/buttonstyle"
+            android:layout_height="40dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:layout_marginTop="80dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    android:text="第一级:聚丙烯熔喷滤芯(5μm)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    android:text="第二级:炭棒滤芯"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    android:text="第三级:聚丙烯熔喷滤芯(1μm)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    android:text="第四级:反渗透膜"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    android:text="第五级:炭棒滤芯"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

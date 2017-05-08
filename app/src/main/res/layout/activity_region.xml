@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="#48baef">
+
+        <ImageView
+            android:id="@+id/fanhui_img"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/jiantou" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="选择所属地区"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_weight="0.8"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:id="@+id/select_ll"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:id="@+id/spinner_sheng"
+                android:spinnerMode="dialog"
+                android:popupBackground="#D1C98B"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+            <Spinner
+                android:id="@+id/spinner_shi"
+                android:spinnerMode="dialog"
+                android:popupBackground="#A7C0DC"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+            <Spinner
+                android:id="@+id/spinner_qu"
+                android:spinnerMode="dialog"
+                android:popupBackground="#eeeff3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+        </LinearLayout>
+        <com.jinfukeji.waterhousekeeper.utils.EdittextActivity
+            android:id="@+id/detailAddress_et"
+            android:layout_margin="10dp"
+            android:hint="请输入详细地址"
+            android:textColorHint="#7c7b7b"
+            android:layout_below="@id/select_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detailAddress_et"
+            android:layout_alignStart="@+id/select_ll">
+            <Button
+                android:id="@+id/quxiao_btn"
+                android:background="@drawable/myshezhibtnstyle"
+                android:text="取消"
+                android:textColor="#7c7b7b"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+            <Button
+                android:id="@+id/queding_btn"
+                android:background="@drawable/myshezhibtnstyle"
+                android:textColor="#7c7b7b"
+                android:text="确定"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

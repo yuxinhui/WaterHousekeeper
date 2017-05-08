@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#F7F7F9"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#48baef">
+
+        <ImageView
+            android:id="@+id/fanhui_img"
+            android:layout_width="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/jiantou" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="产品设置"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/gongneng"
+                android:src="@mipmap/jiqishezhi_gongneng"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="设置功能区"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/gongneng"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="#F7F7F9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <RelativeLayout
+            android:id="@+id/jiqishezhi_wifi_rl"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/wifi"
+                android:src="@mipmap/jiqishezhi_wifi"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="wifi设置"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/wifi"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/jinru"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="#F7F7F9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <RelativeLayout
+            android:id="@+id/jiqishezhi_upmima_rl"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/upmima"
+                android:src="@mipmap/jiqishezhi_upmima"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="修改密码"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/upmima"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/jinru"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/chanpinpeizhi"
+                android:src="@mipmap/jiqishezhi_chanpinpeizhi"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="产品配置"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/chanpinpeizhi"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="#F7F7F9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <RelativeLayout
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/chanpinxuliehao"
+                android:src="@mipmap/jiqishezhi_chanpinxuliehao"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="产品序列号"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/chanpinxuliehao"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="#F7F7F9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <RelativeLayout
+            android:id="@+id/jiqishezhi_peizhi_rl"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/peizhi"
+                android:src="@mipmap/jiqishezhi_peizhi"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="配置"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/peizhi"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/jinru"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/jiqishezhi_guzhang_rl"
+            android:layout_marginTop="20dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/guzhang"
+                android:src="@mipmap/jiqishezhi_guzhang"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="故障反馈"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/guzhang"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/jinru"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="#F7F7F9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <RelativeLayout
+            android:id="@+id/jiqishezhi_aboutus_rl"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/aboutus"
+                android:src="@mipmap/jiqishezhi_aboutus"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="关于我们"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/aboutus"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/jinru"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="#F7F7F9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <RelativeLayout
+            android:id="@+id/jiqishezhi_fuwunum_rl"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/fuwunum"
+                android:src="@mipmap/jiqishezhi_fuwunum"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="服务热线"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/fuwunum"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/jinru"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="#F7F7F9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <RelativeLayout
+            android:id="@+id/jiqishezhi_bangzhu_rl"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/bangzhu"
+                android:src="@mipmap/jiqishezhi_bangzhu"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:text="帮助"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/bangzhu"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/jinru"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

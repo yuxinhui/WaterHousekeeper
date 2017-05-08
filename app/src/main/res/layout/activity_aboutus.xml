@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="#12B7F5"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+        <LinearLayout
+            android:id="@+id/about_fanhui_ll"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/jiantou"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:text="返回"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:layout_centerInParent="true"
+            android:text="关于我们"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@mipmap/guanyuwomen_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_centerVertical="true"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="270dp">
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="15dp"
+                android:scrollbars="vertical"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:textColor="#000000"
+                android:text="安徽亚合环保科技有限公司成立于2014年，选址于合肥市滨湖临滨苑C座12楼。现已投资建成空气滤材生产线、滤网生产线、催化净醛包生产线，前期投资人民币约30000000.00元。安徽亚合环保科技有限公司以来自清华大学环境及化工催化材料领域的博士后创建。
+      亚合环保以教授、博士后为技术先导，并从各大研究院所引进精英人才，构建了一支以青年研究人员为核心的自主研发团队，同时不断加强实验和生产设施硬件建设，成立了包括材料合成、材料与产品性能评测及产品开发三个实验室的技术研发中心，组建了具有多条催化剂和吸附剂生产线的生产车间，从而构成了完整的技术研究和产品开发体系。"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+    </RelativeLayout>
+</LinearLayout>
