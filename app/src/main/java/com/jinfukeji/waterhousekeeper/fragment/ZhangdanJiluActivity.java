@@ -43,6 +43,9 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_zhangdan_jilu,null);
+        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+            Toast.makeText(getContext(),"请先配置序列号",Toast.LENGTH_LONG).show();
+        }
         SharedPreferences sp=getActivity().getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
         serialNum=sp.getInt("xulie_num",0);
         url_zdjl= WaterHousekeeper.getUrlMain()+"recharge/query?serialNumber="+serialNum;
@@ -60,29 +63,31 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
     }
 
     private void initData() {
-        RequestQueue queue= Volley.newRequestQueue(getContext());
-        StringRequest request=new StringRequest(Request.Method.POST, url_zdjl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String s) {
-                        if (s != null){
-                            Gson gson=new Gson();
-                            mJiluBeen=gson.fromJson(s,ZhangdanJiluBeen.class);
-                            if ("fail".equals(mJiluBeen.getStatus())){
-                                Toast.makeText(getContext(),"目前还没有记录",Toast.LENGTH_SHORT).show();
-                            }else {
-                                ZhangdanJiluBeen.MessageBean messageBeen1=mJiluBeen.getMessage();
-                                messageBeen.add(messageBeen1);
-                                mJiluAdapter.notifyDataSetChanged();
+        if (!(WaterHousekeeper.getIntance().getSerialNumber()==null)){
+            RequestQueue queue= Volley.newRequestQueue(getContext());
+            StringRequest request=new StringRequest(Request.Method.POST, url_zdjl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String s) {
+                            if (s != null){
+                                Gson gson=new Gson();
+                                mJiluBeen=gson.fromJson(s,ZhangdanJiluBeen.class);
+                                if ("fail".equals(mJiluBeen.getStatus())){
+                                    Toast.makeText(getContext(),"目前还没有记录",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    ZhangdanJiluBeen.MessageBean messageBeen1=mJiluBeen.getMessage();
+                                    messageBeen.add(messageBeen1);
+                                    mJiluAdapter.notifyDataSetChanged();
+                                }
                             }
                         }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getContext(),"请检查网络连接",Toast.LENGTH_SHORT).show();
-            }
-        });
-        queue.add(request);
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    Toast.makeText(getContext(),"请检查网络连接",Toast.LENGTH_SHORT).show();
+                }
+            });
+            queue.add(request);
+        }
     }
 }

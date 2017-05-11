@@ -125,7 +125,7 @@ public class YindaotuActivity extends AppCompatActivity{
         SharedPreferences settings=getSharedPreferences(SHAREDPREFERENCES_NAME,0);
         SharedPreferences.Editor editor=settings.edit();
         editor.putString(KEY_GUIDE_ACTIVITY,"false");
-        editor.commit();
+        editor.apply();
     }
 
     //引导图适配器

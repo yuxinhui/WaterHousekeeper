@@ -52,6 +52,9 @@ public class MyshezhiActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myshezhi);
+        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+            Toast.makeText(MyshezhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+        }
         SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
         serialNumber=sp.getInt("xulie_num",1);
         initView();
@@ -137,6 +140,9 @@ public class MyshezhiActivity extends AppCompatActivity{
                 }
                 if (TextUtils.isEmpty(adress) || TextUtils.isEmpty(diqu)){
                     Toast.makeText(MyshezhiActivity.this,"地址不能为空",Toast.LENGTH_LONG).show();
+                }
+                if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                    Toast.makeText(MyshezhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
                 }
                 String url_myshezhi= WaterHousekeeper.getUrlMain()+"user/addUser?name="+name+"&phone="
                         +phone+"&qq="+qq+"&gender="+sex+"&region="+diqu+"&address="+adress+"&serialNumber="+serialNumber;

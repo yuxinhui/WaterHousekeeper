@@ -12,6 +12,8 @@ import android.app.Application;
 public class WaterHousekeeper extends Application{
     private static WaterHousekeeper intance;
     private static final String URL_MAIN="http://114.55.142.212:8080/yahe/";
+    private String serialNumber=null;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -28,5 +30,13 @@ public class WaterHousekeeper extends Application{
 
     public static String getUrlMain() {
         return URL_MAIN;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 }

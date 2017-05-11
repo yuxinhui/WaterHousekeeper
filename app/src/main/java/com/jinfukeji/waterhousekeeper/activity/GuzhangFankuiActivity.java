@@ -77,6 +77,9 @@ public class GuzhangFankuiActivity extends AppCompatActivity {
                     lianxi_num.setError("联系方式不能为空");
                     return;
                 }
+                if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                    Toast.makeText(GuzhangFankuiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+                }
                 String url_guzhang= WaterHousekeeper.getUrlMain()+"feedback/addFeedback?serialNumber="+xulie+
                         "&content="+content;
                 Log.e("url_guzhang",url_guzhang);

@@ -1,20 +1,24 @@
 package com.jinfukeji.waterhousekeeper.activity;
 
 import android.Manifest;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jinfukeji.waterhousekeeper.R;
+import com.jinfukeji.waterhousekeeper.WaterHousekeeper;
 
 /**
  * Created by "于志渊"
@@ -23,15 +27,21 @@ import com.jinfukeji.waterhousekeeper.R;
  * 描述:机器设置界面
  */
 
-public class JiqishezhiActivity extends AppCompatActivity{
+public class JiqishezhiActivity extends AppCompatActivity {
     ImageView fanhui_img;
-    RelativeLayout peizhi_rl, aboutus_rl, fuwuphone_rl,jiqishezhi_guzhang_rl;
+    RelativeLayout peizhi_rl, aboutus_rl, fuwuphone_rl, jiqishezhi_guzhang_rl;
+    TextView chanpinxuliehao_tv;
+    int xulie_num;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jiqishezhi);
         initView();
         initOnclick();
+        SharedPreferences sp = getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
+        xulie_num = sp.getInt("xulie_num", 0);
+
     }
 
     //点击事件
@@ -48,13 +58,28 @@ public class JiqishezhiActivity extends AppCompatActivity{
         fuwuphone_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(JiqishezhiActivity.this);
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                else {
+                    Intent intent = new Intent(Intent.ACTION_CALL); Uri data = Uri.parse("tel:" + "4009201210");
+                    intent.setData(data);
+                    startActivity(intent);
+                }
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(JiqishezhiActivity.this);
                 builder.setTitle("提示");
                 builder.setMessage("是否拨打服务热线");
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        call("13552454204");
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
+                                + "10086"));
+                        if (ActivityCompat.checkSelfPermission(JiqishezhiActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        startActivity(intent);
+
+
                     }
                 });
                 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -63,28 +88,14 @@ public class JiqishezhiActivity extends AppCompatActivity{
 
                     }
                 });
-                builder.show();
-            }
-
-            private void call(String phone) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone));
-                if (ActivityCompat.checkSelfPermission(JiqishezhiActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                startActivity(intent);
+                builder.show();*/
             }
         });
         peizhi_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(JiqishezhiActivity.this,PopupWindowActivity.class));
+                Intent intent=new Intent(JiqishezhiActivity.this,PopupWindowActivity.class);
+                startActivity(intent);
             }
         });
         aboutus_rl.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +112,30 @@ public class JiqishezhiActivity extends AppCompatActivity{
                 finish();
             }
         });
+        findViewById(R.id.jiqishezhi_wifi_rl).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                if (Build.VERSION.SDK_INT >= 19){
+                    intent.setClassName("com.android.settings","com.android.settings.Settings$WifiSettingsActivity");
+                }else {
+                    intent.setClassName("com.android.settings","com.android.settings.wifi.WifiSettings");
+                }
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.jiqishezhi_upmima_rl).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(JiqishezhiActivity.this,UpMimaActivity.class));
+            }
+        });
+        findViewById(R.id.jiqishezhi_bangzhu_rl).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(JiqishezhiActivity.this,"暂未开放",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     //控件初始化
@@ -110,5 +145,9 @@ public class JiqishezhiActivity extends AppCompatActivity{
         aboutus_rl= (RelativeLayout) this.findViewById(R.id.jiqishezhi_aboutus_rl);
         fuwuphone_rl= (RelativeLayout) this.findViewById(R.id.jiqishezhi_fuwunum_rl);
         jiqishezhi_guzhang_rl= (RelativeLayout) this.findViewById(R.id.jiqishezhi_guzhang_rl);
+        chanpinxuliehao_tv= (TextView) this.findViewById(R.id.chanpinxuliehao_tv);
+        if (WaterHousekeeper.getIntance().getSerialNumber() != null){
+            chanpinxuliehao_tv.setText(WaterHousekeeper.getIntance().getSerialNumber());
+        }
     }
 }

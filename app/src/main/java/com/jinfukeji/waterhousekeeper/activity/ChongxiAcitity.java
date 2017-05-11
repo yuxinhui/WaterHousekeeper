@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.jinfukeji.waterhousekeeper.R;
+import com.jinfukeji.waterhousekeeper.WaterHousekeeper;
 
 /**
  * Created by "于志渊"
@@ -37,6 +39,14 @@ public class ChongxiAcitity extends AppCompatActivity{
                 intent.putExtra("index",1);
                 setResult(00,intent);
                 finish();
+            }
+        });
+        chongxi_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                    Toast.makeText(ChongxiAcitity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

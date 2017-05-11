@@ -22,18 +22,31 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled false //混淆打包
+            zipAlignEnabled true //Zipalign优化
+            shrinkResources false // 是否去除无效的资源文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled false //混淆打包
+            shrinkResources false // 是否去除无效的资源文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE.txt' // will not include NOTICE file
+        exclude 'META-INF/LICENSE' // will not include LICENSE file
+        exclude 'META-INF/DEPENDENCIES'
     }
 }
 
@@ -48,10 +61,20 @@ dependencies {
     compile files('libs/Volley.jar')
     compile 'com.google.code.gson:gson:2.8.0'
     compile files('libs/libammsdk.jar')
+    compile files('libs/commons-codec-1.9.jar')
+    compile files('libs/commons-logging-1.2.jar')
+    compile files('libs/fluent-hc-4.5.jar')
+    compile files('libs/httpclient-4.5.jar')
+    compile files('libs/httpclient-cache-4.5.jar')
+    compile files('libs/httpclient-win-4.5.jar')
+    compile files('libs/httpcore-4.4.1.jar')
+    compile files('libs/httpmime-4.5.jar')
+    compile files('libs/nineoldandroids-2.4.0.jar')
     compile files('libs/MobCommons-2017.0412.1554.jar')
     compile files('libs/MobTools-2017.0412.1554.jar')
     compile files('libs/ShareSDK-Core-2.8.3.jar')
     compile files('libs/ShareSDK-Wechat-2.8.3.jar')
     compile files('libs/ShareSDK-Wechat-Core-2.8.3.jar')
     compile files('libs/ShareSDK-Wechat-Moments-2.8.3.jar')
+    compile files('libs/ShareSDK-QQ-2.8.3.jar')
 }

@@ -46,6 +46,7 @@ public class PopupWindowActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         dialog=new Dialog(this,R.style.PeizhiPopupWindow);
         dialog.setContentView(R.layout.popup_window);
+        chanpinhao=getIntent().getStringExtra("num");
         dialog.show();
         View.OnClickListener listener=new View.OnClickListener() {
             @Override
@@ -79,6 +80,7 @@ public class PopupWindowActivity extends AppCompatActivity{
         initView(listener);
         initData();
         Window window=dialog.getWindow();
+        assert window != null;
         window.getDecorView().setPadding(0,0,0,0);
         WindowManager.LayoutParams params = window.getAttributes();
         params.width = LinearLayout.LayoutParams.MATCH_PARENT;
@@ -100,6 +102,7 @@ public class PopupWindowActivity extends AppCompatActivity{
                         SharedPreferences.Editor ed=sp.edit();
                         ed.putInt("xulie_num", Integer.parseInt(chanpinhao));
                         ed.apply();
+                        WaterHousekeeper.getIntance().setSerialNumber(chanpinhao);
                         Toast.makeText(PopupWindowActivity.this,"配置成功",Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(PopupWindowActivity.this,"配置失败",Toast.LENGTH_SHORT).show();

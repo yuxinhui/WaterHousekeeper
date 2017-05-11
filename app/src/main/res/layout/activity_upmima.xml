@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:text="修改密码"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.jinfukeji.waterhousekeeper.utils.EdittextActivity
+            android:id="@+id/upmima_et"
+            android:textColor="#7c7b7b"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:textSize="30px"
+            android:hint="新密码"
+            android:textColorHint="#7c7b7b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.jinfukeji.waterhousekeeper.utils.EdittextActivity
+            android:id="@+id/upmima2_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:hint="确认新密码"
+            android:textColor="#7c7b7b"
+            android:textColorHint="#7c7b7b"
+            android:textSize="30px" />
+
+        <RelativeLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/upmima_quxiao_btn"
+                android:background="@drawable/myshezhibtnstyle"
+                android:text="取消"
+                android:textColor="#7c7b7b"
+                android:layout_width="80dp"
+                android:layout_height="30dp" />
+            <Button
+                android:id="@+id/upmima_baocun_btn"
+                android:textColor="#7c7b7b"
+                android:text="保存"
+                android:layout_toEndOf="@id/upmima_quxiao_btn"
+                android:background="@drawable/myshezhibtnstyle"
+                android:layout_width="80dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
