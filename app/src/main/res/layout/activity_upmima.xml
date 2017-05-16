@@ -21,7 +21,7 @@
             android:textColor="#7c7b7b"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:textSize="30px"
+            android:textSize="15sp"
             android:hint="新密码"
             android:textColorHint="#7c7b7b"
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:hint="确认新密码"
             android:textColor="#7c7b7b"
             android:textColorHint="#7c7b7b"
-            android:textSize="30px" />
+            android:textSize="15sp" />
 
         <RelativeLayout
             android:layout_marginTop="8dp"

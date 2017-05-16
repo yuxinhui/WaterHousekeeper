@@ -44,23 +44,45 @@ public class MyshezhiActivity extends AppCompatActivity{
     Button quxiao_btn,up_btn;
     TextView diqu_tv,xiangxi_tv,myshezhi_shengri_tv;
     LinearLayout diqu_rl,shengri_ll;
-    private int requestCode=101,mYear,mMonth,mDay,serialNumber;//请求码
+    private int requestCode=101,mYear,mMonth,mDay;//请求码
     private final int DATE_DIALOGE=1;
-    private EditText name_et,phone_et,qq_et,sex_et;
-    private String name,phone,qq,sex,diqu,adress;
+    private EditText name_et,phone_et,qq_et,sex_et,wx_et;
+    private String name,phone,qq,sex,diqu,adress,serialNumber;
+    private String showName,showPhone,showQQ,showSex,showDiqu,showAdress,showDate,showWexin;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myshezhi);
+        SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
+        serialNumber=sp.getString("xulie_num","");
         if (WaterHousekeeper.getIntance().getSerialNumber() == null){
             Toast.makeText(MyshezhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
         }
-        SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        serialNumber=sp.getInt("xulie_num",1);
         initView();
-        initData();
         initOnclick();
+        showdata();
         setDate();//设置日期
+    }
+
+    //显示提交的信息
+    private void showdata() {
+        SharedPreferences ap=getSharedPreferences("showdata",Context.MODE_PRIVATE);
+        showName=ap.getString("name","");
+        showPhone=ap.getString("phone","");
+        showQQ=ap.getString("qq","");
+        showSex=ap.getString("sex","");
+        showDiqu=ap.getString("diqu","");
+        showAdress=ap.getString("adress","");
+        showDate=ap.getString("shengri","");
+        showWexin=ap.getString("wexin","");
+        name_et.setText(showName);
+        phone_et.setText(showPhone);
+        qq_et.setText(showQQ);
+        sex_et.setText(showSex);
+        diqu_tv.setText(showDiqu);
+        xiangxi_tv.setText(showAdress);
+        myshezhi_shengri_tv.setText(showDate);
+        wx_et.setText(showWexin);
     }
 
     //获取数据
@@ -140,14 +162,17 @@ public class MyshezhiActivity extends AppCompatActivity{
                 }
                 if (TextUtils.isEmpty(adress) || TextUtils.isEmpty(diqu)){
                     Toast.makeText(MyshezhiActivity.this,"地址不能为空",Toast.LENGTH_LONG).show();
+                    return;
                 }
                 if (WaterHousekeeper.getIntance().getSerialNumber() == null){
                     Toast.makeText(MyshezhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+                    return;
                 }
                 String url_myshezhi= WaterHousekeeper.getUrlMain()+"user/addUser?name="+name+"&phone="
                         +phone+"&qq="+qq+"&gender="+sex+"&region="+diqu+"&address="+adress+"&serialNumber="+serialNumber;
                 Log.e("url_myshezhi",url_myshezhi);
                 myshezhi(url_myshezhi);
+                finish();
             }
         });
     }
@@ -163,8 +188,18 @@ public class MyshezhiActivity extends AppCompatActivity{
                             Gson gson=new Gson();
                             MyshezhiBeen myshezhiBeen=gson.fromJson(s,MyshezhiBeen.class);
                             if ("ok".equals(myshezhiBeen.getStatus())){
-                                finish();
                                 Toast.makeText(MyshezhiActivity.this,"设置成功",Toast.LENGTH_LONG).show();
+                                SharedPreferences sp=getSharedPreferences("showdata",Context.MODE_PRIVATE);
+                                SharedPreferences.Editor ed=sp.edit();
+                                ed.putString("name",name);
+                                ed.putString("phone",phone);
+                                ed.putString("qq",qq);
+                                ed.putString("sex",sex);
+                                ed.putString("diqu",diqu);
+                                ed.putString("adress",adress);
+                                ed.putString("shengri",myshezhi_shengri_tv.getText().toString());
+                                ed.putString("wexin",wx_et.getText().toString());
+                                ed.apply();
                             }else {
                                 Toast.makeText(MyshezhiActivity.this,"设置失败",Toast.LENGTH_SHORT).show();
                             }
@@ -193,6 +228,7 @@ public class MyshezhiActivity extends AppCompatActivity{
         up_btn= (Button) this.findViewById(R.id.up_btn);
         myshezhi_shengri_tv= (TextView) this.findViewById(R.id.myshezhi_shengri_tv);
         shengri_ll= (LinearLayout) this.findViewById(R.id.myshezhi_shengri_ll);
+        wx_et= (EditText) this.findViewById(R.id.myshezhi_wx_et);
     }
 
     @Override

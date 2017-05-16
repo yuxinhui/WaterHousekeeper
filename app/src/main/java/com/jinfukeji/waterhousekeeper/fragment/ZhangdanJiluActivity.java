@@ -33,8 +33,7 @@ import java.util.ArrayList;
  */
 
 public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
-    int serialNum;
-    String url_zdjl;
+    String url_zdjl,serialNum;
     ZhangdanJiluAdapter mJiluAdapter;
     private ArrayList<ZhangdanJiluBeen.MessageBean> messageBeen=new ArrayList<ZhangdanJiluBeen.MessageBean>();
     ZhangdanJiluBeen mJiluBeen=new ZhangdanJiluBeen();
@@ -43,11 +42,11 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_zhangdan_jilu,null);
+        SharedPreferences sp=getActivity().getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
+        serialNum=sp.getString("xulie_num","");
         if (WaterHousekeeper.getIntance().getSerialNumber() == null){
             Toast.makeText(getContext(),"请先配置序列号",Toast.LENGTH_LONG).show();
         }
-        SharedPreferences sp=getActivity().getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        serialNum=sp.getInt("xulie_num",0);
         url_zdjl= WaterHousekeeper.getUrlMain()+"recharge/query?serialNumber="+serialNum;
         Log.e("url_zdjl",url_zdjl);
         initData();

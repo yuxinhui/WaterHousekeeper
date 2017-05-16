@@ -34,19 +34,18 @@ import com.jinfukeji.waterhousekeeper.been.ZhangdanYueBeen;
 
 public class ZhangdanYueActivity extends android.support.v4.app.Fragment {
     private LinearLayout yue_chongzhi_ll;
-    int xunlie_num;
     TextView yue_tv;
-    String url_zdye;
+    String url_zdye,xunlie_num;
     ZhangdanYueBeen yueBeen;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_zhangdan_yue,null);
+        SharedPreferences sp=getActivity().getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
+        xunlie_num=sp.getString("xulie_num","");
         if (WaterHousekeeper.getIntance().getSerialNumber() == null){
             Toast.makeText(getContext(),"请先配置序列号",Toast.LENGTH_LONG).show();
         }
-        SharedPreferences sp=getActivity().getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xunlie_num=sp.getInt("xulie_num",0);
         url_zdye=WaterHousekeeper.getUrlMain()+"device/query?serialNumber="+xunlie_num;
         Log.e("zdye_url",url_zdye);
         initData();

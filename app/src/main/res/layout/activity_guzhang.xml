@@ -26,15 +26,6 @@
             android:text="故障反馈"
             android:textColor="#ffffff" />
     </RelativeLayout>
-    <com.jinfukeji.waterhousekeeper.utils.EdittextActivity
-        android:id="@+id/lianxi_num"
-        android:layout_margin="10dp"
-        android:inputType="phone"
-        android:textColor="#000000"
-        android:hint="联系方式"
-        android:textColorHint="#cccccc"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
     <EditText
         android:id="@+id/content_et"
         android:background="@drawable/guzhang_edit_style"
@@ -45,7 +36,7 @@
         android:hint="请填写故障描述信息"
         android:textColorHint="#cccccc"
         android:textColor="#000000"
-        android:minLines="5"
+        android:minLines="8"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/guzhang_tijiao_btn"

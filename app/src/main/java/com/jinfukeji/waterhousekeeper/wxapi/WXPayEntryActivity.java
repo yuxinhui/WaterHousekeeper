@@ -1,20 +1,17 @@
 package com.jinfukeji.waterhousekeeper.wxapi;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.jinfukeji.waterhousekeeper.weixin.Constants;
+import com.jinfukeji.waterhousekeeper.weixin.WXPay;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 /**
  * Created by "于志渊"
@@ -30,16 +27,20 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
-
-        api.handleIntent(getIntent(), this);
+        if(WXPay.getInstance() != null) {
+            WXPay.getInstance().getWXApi().handleIntent(getIntent(), this);
+        } else {
+            finish();
+        }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        api.handleIntent(intent, this);
+        if(WXPay.getInstance() != null) {
+            WXPay.getInstance().getWXApi().handleIntent(intent, this);
+        }
     }
 
     @Override
@@ -49,14 +50,15 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
 
     @Override
     public void onResp(BaseResp baseResp) {
-        Log.d("WXPayEntryActivity", "onPayFinish, errCode = " + baseResp.errCode);
-        Toast.makeText(WXPayEntryActivity.this, baseResp.errCode, Toast.LENGTH_SHORT).show();
-        if (baseResp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("提示");
-            builder.setMessage("微信支付结果" +String.valueOf(baseResp.errCode));
-            builder.show();
-            finish();
+        if(baseResp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+            if(WXPay.getInstance() != null) {
+                if(baseResp.errStr != null) {
+                    Log.e("wxpay", "errstr=" + baseResp.errStr);
+                }
+
+                WXPay.getInstance().onResp(baseResp.errCode);
+                finish();
+            }
         }
     }
 }

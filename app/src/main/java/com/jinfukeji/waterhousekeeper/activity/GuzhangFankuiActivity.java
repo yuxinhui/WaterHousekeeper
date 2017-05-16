@@ -33,17 +33,16 @@ import com.jinfukeji.waterhousekeeper.been.GuzhangFankuiBeen;
  */
 
 public class GuzhangFankuiActivity extends AppCompatActivity {
-    private EditText lianxi_num,content_et;
+    private EditText content_et;
     private Button guzhang_tijiao_btn;
     private ImageView fanhui_img;
-    String content;
-    int xulie;
+    String content,xulie;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guzhang);
         SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xulie=sp.getInt("xulie_num",1);
+        xulie=sp.getString("xulie_num","");
         initView();//控件初始化
         initData();
         initOnclick();//点击事件
@@ -72,13 +71,9 @@ public class GuzhangFankuiActivity extends AppCompatActivity {
                     content_et.requestFocus();
                     return;
                 }
-                if (TextUtils.isEmpty(lianxi_num.getText().toString())){
-                    lianxi_num.requestFocus();
-                    lianxi_num.setError("联系方式不能为空");
-                    return;
-                }
                 if (WaterHousekeeper.getIntance().getSerialNumber() == null){
                     Toast.makeText(GuzhangFankuiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+                    return;
                 }
                 String url_guzhang= WaterHousekeeper.getUrlMain()+"feedback/addFeedback?serialNumber="+xulie+
                         "&content="+content;
@@ -116,7 +111,6 @@ public class GuzhangFankuiActivity extends AppCompatActivity {
     //控件初始化
     private void initView() {
         fanhui_img= (ImageView) this.findViewById(R.id.fanhui_img);
-        lianxi_num= (EditText) this.findViewById(R.id.lianxi_num);
         content_et= (EditText) this.findViewById(R.id.content_et);
         guzhang_tijiao_btn= (Button) this.findViewById(R.id.guzhang_tijiao_btn);
     }

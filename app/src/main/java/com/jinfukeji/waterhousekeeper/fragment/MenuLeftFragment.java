@@ -1,6 +1,9 @@
 package com.jinfukeji.waterhousekeeper.fragment;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +20,13 @@ import com.jinfukeji.waterhousekeeper.activity.JiqishezhiActivity;
 import com.jinfukeji.waterhousekeeper.activity.LvxinActivity;
 import com.jinfukeji.waterhousekeeper.activity.MyshezhiActivity;
 import com.jinfukeji.waterhousekeeper.activity.MyzhangdanActivity;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -142,7 +152,21 @@ public class MenuLeftFragment extends Fragment {
         oks.setText("健康水管家您身边的净水保镖");
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-        oks.setImageUrl(String.valueOf(R.mipmap.apptubiao));
+        Resources r=getActivity().getResources();
+        InputStream is=r.openRawResource(R.drawable.wechat);
+        BitmapDrawable bmpDraw=new BitmapDrawable(is);
+        Bitmap bmp = bmpDraw.getBitmap();
+        String path=getContext().getFilesDir()+ File.separator+"huai.png";
+        try {
+            OutputStream os=new FileOutputStream(path);
+            bmp.compress(Bitmap.CompressFormat.PNG,100,os);
+            os.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        oks.setImagePath(path);
         // url仅在微信（包括好友和朋友圈）中使用
         oks.setUrl("http://www.yahehb.com");
         // comment是我对这条分享的评论，仅在人人网和QQ空间使用

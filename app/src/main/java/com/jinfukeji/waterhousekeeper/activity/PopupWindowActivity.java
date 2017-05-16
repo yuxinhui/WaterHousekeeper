@@ -40,13 +40,12 @@ public class PopupWindowActivity extends AppCompatActivity{
     Dialog dialog;
     EditText chanpinhao_et,mima_et;
     Button quxiao_btn,baocun_btn;
-    String chanpinhao,mima;
+    String chanpinhao,mima,xulie_num;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dialog=new Dialog(this,R.style.PeizhiPopupWindow);
         dialog.setContentView(R.layout.popup_window);
-        chanpinhao=getIntent().getStringExtra("num");
         dialog.show();
         View.OnClickListener listener=new View.OnClickListener() {
             @Override
@@ -71,6 +70,7 @@ public class PopupWindowActivity extends AppCompatActivity{
                         String url_peizhi= WaterHousekeeper.getUrlMain()+"device/addDevice?serialNumber="+chanpinhao+"&password="+mima;
                         Log.e("url_peizhi",url_peizhi);
                         peizhiurl(url_peizhi);
+                        setserialNumber();
                         finish();
                         break;
                 }
@@ -78,7 +78,6 @@ public class PopupWindowActivity extends AppCompatActivity{
             }
         };
         initView(listener);
-        initData();
         Window window=dialog.getWindow();
         assert window != null;
         window.getDecorView().setPadding(0,0,0,0);
@@ -86,6 +85,15 @@ public class PopupWindowActivity extends AppCompatActivity{
         params.width = LinearLayout.LayoutParams.MATCH_PARENT;
         params.gravity = Gravity.BOTTOM;
         window.setAttributes(params);
+    }
+
+    //保存序列号到全局变量类里
+    private void setserialNumber() {
+        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+            SharedPreferences sp=getSharedPreferences("peizhi_xulie",Context.MODE_PRIVATE);
+            xulie_num=sp.getString("xulie_num","");
+            WaterHousekeeper.getIntance().setSerialNumber(xulie_num);
+        }
     }
 
     //配置序列号的请求
@@ -100,9 +108,8 @@ public class PopupWindowActivity extends AppCompatActivity{
                     if ("ok".equals(message.getStatus())){
                         SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
                         SharedPreferences.Editor ed=sp.edit();
-                        ed.putInt("xulie_num", Integer.parseInt(chanpinhao));
+                        ed.putString("xulie_num",chanpinhao_et.getText().toString());
                         ed.apply();
-                        WaterHousekeeper.getIntance().setSerialNumber(chanpinhao);
                         Toast.makeText(PopupWindowActivity.this,"配置成功",Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(PopupWindowActivity.this,"配置失败",Toast.LENGTH_SHORT).show();

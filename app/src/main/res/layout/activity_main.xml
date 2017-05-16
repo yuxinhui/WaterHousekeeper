@@ -72,18 +72,20 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:src="@mipmap/jiqizhishui_cai"
+                                android:id="@+id/jiqizhishui_img"
+                                android:src="@mipmap/jiqizhishui_hui"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_gravity="center_horizontal"/>
 
                             <TextView
+                                android:id="@+id/jiqizhishui_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:layout_gravity="center_horizontal"
                                 android:text="机器制水"
-                                android:textColor="#3FA8F4" />
+                                android:textColor="#828282" />
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/jiqishuiman_ll"
@@ -93,11 +95,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:id="@+id/jiqishuiman_img"
                                 android:src="@mipmap/jiqishuiman_hui"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp" />
                             <TextView
+                                android:id="@+id/jiqishuiman_txt"
                                 android:text="机器水满"
                                 android:textColor="#828282"
                                 android:layout_gravity="center_horizontal"
@@ -113,11 +117,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:id="@+id/jiqiqueshui_img"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@mipmap/jiqiqueshui_hui"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp" />
                             <TextView
+                                android:id="@+id/jiqiqueshui_txt"
                                 android:text="机器缺水"
                                 android:textColor="#828282"
                                 android:layout_marginTop="5dp"
@@ -139,11 +145,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:id="@+id/jiqiok_img"
                                 android:src="@mipmap/jiqiok_hui"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp" />
                             <TextView
+                                android:id="@+id/jiqiok_txt"
                                 android:text="机器正常"
                                 android:textColor="#828282"
                                 android:layout_gravity="center_horizontal"
@@ -158,11 +166,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:id="@+id/jiqiguzhang_img"
                                 android:src="@mipmap/jiqiguzhang_hui"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp" />
                             <TextView
+                                android:id="@+id/jiqiguzhang_txt"
                                 android:text="机器故障"
                                 android:textColor="#828282"
                                 android:layout_marginTop="5dp"
@@ -177,11 +187,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:id="@+id/jiqiyichang_img"
                                 android:src="@mipmap/jiqiyichang_hui"
                                 android:layout_width="50dp"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_height="50dp" />
                             <TextView
+                                android:id="@+id/jiqiyichang_txt"
                                 android:text="机器异常"
                                 android:textColor="#828282"
                                 android:layout_marginTop="5dp"

@@ -1,10 +1,8 @@
 package com.jinfukeji.waterhousekeeper.activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -35,7 +33,6 @@ public class JiqishezhiActivity extends AppCompatActivity {
     ImageView fanhui_img;
     RelativeLayout peizhi_rl, aboutus_rl, fuwuphone_rl, jiqishezhi_guzhang_rl;
     TextView chanpinxuliehao_tv;
-    int xulie_num;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,9 +40,6 @@ public class JiqishezhiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jiqishezhi);
         initView();
         initOnclick();
-        SharedPreferences sp = getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xulie_num = sp.getInt("xulie_num", 0);
-
     }
 
     //点击事件

@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/fanhui_rl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.07"
         android:background="#48baef">
 
         <ImageView
-            android:id="@+id/fanhui_img"
             android:layout_width="25dp"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
@@ -38,68 +38,218 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <EditText
-                android:id="@+id/qita_et"
-                android:hint="其它金额"
-                android:textColorHint="#cccccc"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/chongzhi_edit_style"
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
             <LinearLayout
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="15dp"
                 android:orientation="horizontal"
+                android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:textColor="#a6a5a5"
-                    android:text="余额:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/yue_tv"
-                    android:textColor="#a6a5a5"
-                    android:text="2625元"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_5481_btn"
+                        android:text="548"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_oneyuar"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_9782_btn"
+                        android:text="978"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_twoyear"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_12983_btn"
+                        android:text="1298"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_threeyear"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
                 android:orientation="horizontal"
+                android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/yibai_img"
+                <LinearLayout
                     android:layout_weight="1"
-                    android:src="@mipmap/chongzhi_100_01"
+                    android:orientation="vertical"
                     android:layout_width="0dp"
-                    android:layout_height="50dp" />
-                <ImageView
-                    android:id="@+id/erbai_img"
-                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_10881_btn"
+                        android:text="1088"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_oneyuar"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_weight="1"
-                    android:src="@mipmap/chongzhi_200_02"
+                    android:orientation="vertical"
                     android:layout_width="0dp"
-                    android:layout_height="50dp" />
-                <ImageView
-                    android:id="@+id/sanbai_img"
-                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_19882_btn"
+                        android:text="1988"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_twoyear"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_weight="1"
-                    android:src="@mipmap/chongzhi_300_02"
+                    android:orientation="vertical"
                     android:layout_width="0dp"
-                    android:layout_height="50dp" />
-                <ImageView
-                    android:id="@+id/wubai_img"
-                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_25983_btn"
+                        android:text="2598"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_threeyear"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="15dp"
+                android:orientation="horizontal"
+                android:layout_marginEnd="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
                     android:layout_weight="1"
-                    android:src="@mipmap/chongzhi_500_02"
+                    android:orientation="vertical"
                     android:layout_width="0dp"
-                    android:layout_height="50dp" />
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_13881_btn"
+                        android:text="1388"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_oneyuar"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_24882_btn"
+                        android:text="2488"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_twoyear"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhongzhi_32883_btn"
+                        android:text="3288"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/chongzhistyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:text="@string/use_threeyear"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#cccccc"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="8dp"

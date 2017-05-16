@@ -40,20 +40,19 @@ import java.util.Objects;
 public class UpMimaActivity extends AppCompatActivity{
     Dialog dialog;
     private EditText upmima_et,upmima2_et;
-    String upmima,upmima2;
+    String upmima,upmima2,xulie_num;
     View.OnClickListener listener;
-    int xulie_num;
     UpmimaBeen upmimaBeen;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
-            Toast.makeText(UpMimaActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
-        }
         dialog=new Dialog(this,R.style.PeizhiPopupWindow);
         dialog.setContentView(R.layout.activity_upmima);
         SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xulie_num=sp.getInt("xulie_num",0);
+        xulie_num=sp.getString("xulie_num","");
+        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+            Toast.makeText(UpMimaActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+        }
         dialog.show();
         listener=new View.OnClickListener() {
             @Override
@@ -81,6 +80,7 @@ public class UpMimaActivity extends AppCompatActivity{
                         }
                         if (WaterHousekeeper.getIntance().getSerialNumber() == null){
                             Toast.makeText(UpMimaActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+                            return;
                         }
                         String url_upmima=WaterHousekeeper.getUrlMain()+"device/updatePassword?serialNumber="+xulie_num+"&password="+upmima;
                         Log.e("url_upmima",url_upmima);
