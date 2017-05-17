@@ -13,6 +13,7 @@ public class WaterHousekeeper extends Application{
     private static WaterHousekeeper intance;
     private static final String URL_MAIN="http://114.55.142.212:8080/yahe/";
     private String serialNumber=null;
+    private static final String filename="xulienum";
 
     @Override
     public void onCreate() {
@@ -30,6 +31,10 @@ public class WaterHousekeeper extends Application{
 
     public static String getUrlMain() {
         return URL_MAIN;
+    }
+
+    public static String getFilename() {
+        return filename;
     }
 
     public String getSerialNumber() {

@@ -31,6 +31,7 @@ import com.jinfukeji.waterhousekeeper.WaterHousekeeper;
 import com.jinfukeji.waterhousekeeper.been.MyshezhiBeen;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * Created by "于志渊"
@@ -47,15 +48,17 @@ public class MyshezhiActivity extends AppCompatActivity{
     private int requestCode=101,mYear,mMonth,mDay;//请求码
     private final int DATE_DIALOGE=1;
     private EditText name_et,phone_et,qq_et,sex_et,wx_et;
-    private String name,phone,qq,sex,diqu,adress,serialNumber;
+    private String name,phone,qq,sex,diqu,adress,xulie_num;
     private String showName,showPhone,showQQ,showSex,showDiqu,showAdress,showDate,showWexin;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myshezhi);
-        SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        serialNumber=sp.getString("xulie_num","");
-        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+        SharedPreferences sp=getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
+        xulie_num=sp.getString("xulie_num","0");
+        SharedPreferences ap=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+        WaterHousekeeper.getIntance().setSerialNumber(ap.getString("waterhousenum",""));
+        if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
             Toast.makeText(MyshezhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
         }
         initView();
@@ -164,12 +167,12 @@ public class MyshezhiActivity extends AppCompatActivity{
                     Toast.makeText(MyshezhiActivity.this,"地址不能为空",Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
                     Toast.makeText(MyshezhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
                     return;
                 }
                 String url_myshezhi= WaterHousekeeper.getUrlMain()+"user/addUser?name="+name+"&phone="
-                        +phone+"&qq="+qq+"&gender="+sex+"&region="+diqu+"&address="+adress+"&serialNumber="+serialNumber;
+                        +phone+"&qq="+qq+"&gender="+sex+"&region="+diqu+"&address="+adress+"&serialNumber="+xulie_num;
                 Log.e("url_myshezhi",url_myshezhi);
                 myshezhi(url_myshezhi);
                 finish();

@@ -40,7 +40,7 @@ public class PopupWindowActivity extends AppCompatActivity{
     Dialog dialog;
     EditText chanpinhao_et,mima_et;
     Button quxiao_btn,baocun_btn;
-    String chanpinhao,mima,xulie_num;
+    String chanpinhao,mima;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,6 @@ public class PopupWindowActivity extends AppCompatActivity{
                         String url_peizhi= WaterHousekeeper.getUrlMain()+"device/addDevice?serialNumber="+chanpinhao+"&password="+mima;
                         Log.e("url_peizhi",url_peizhi);
                         peizhiurl(url_peizhi);
-                        setserialNumber();
                         finish();
                         break;
                 }
@@ -87,15 +86,6 @@ public class PopupWindowActivity extends AppCompatActivity{
         window.setAttributes(params);
     }
 
-    //保存序列号到全局变量类里
-    private void setserialNumber() {
-        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
-            SharedPreferences sp=getSharedPreferences("peizhi_xulie",Context.MODE_PRIVATE);
-            xulie_num=sp.getString("xulie_num","");
-            WaterHousekeeper.getIntance().setSerialNumber(xulie_num);
-        }
-    }
-
     //配置序列号的请求
     private void peizhiurl(String url_peizhi) {
         RequestQueue queue= Volley.newRequestQueue(getApplicationContext());
@@ -106,10 +96,15 @@ public class PopupWindowActivity extends AppCompatActivity{
                     Gson gson=new Gson();
                     PeiZhiBeen message=gson.fromJson(s,PeiZhiBeen.class);
                     if ("ok".equals(message.getStatus())){
-                        SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
+                        SharedPreferences sp=getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
                         SharedPreferences.Editor ed=sp.edit();
                         ed.putString("xulie_num",chanpinhao_et.getText().toString());
                         ed.apply();
+                        WaterHousekeeper.getIntance().setSerialNumber(chanpinhao);
+                        SharedPreferences ap=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor=ap.edit();
+                        editor.putString("waterhousenum",WaterHousekeeper.getIntance().getSerialNumber());
+                        editor.apply();
                         Toast.makeText(PopupWindowActivity.this,"配置成功",Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(PopupWindowActivity.this,"配置失败",Toast.LENGTH_SHORT).show();

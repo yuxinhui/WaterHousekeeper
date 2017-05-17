@@ -48,9 +48,11 @@ public class UpMimaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         dialog=new Dialog(this,R.style.PeizhiPopupWindow);
         dialog.setContentView(R.layout.activity_upmima);
-        SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xulie_num=sp.getString("xulie_num","");
-        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+        SharedPreferences sp=getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
+        xulie_num=sp.getString("xulie_num","0");
+        SharedPreferences ap=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+        WaterHousekeeper.getIntance().setSerialNumber(ap.getString("waterhousenum",""));
+        if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
             Toast.makeText(UpMimaActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
         }
         dialog.show();
@@ -78,7 +80,7 @@ public class UpMimaActivity extends AppCompatActivity{
                             Toast.makeText(UpMimaActivity.this,"俩次密码不一样",Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                        if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
                             Toast.makeText(UpMimaActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
                             return;
                         }

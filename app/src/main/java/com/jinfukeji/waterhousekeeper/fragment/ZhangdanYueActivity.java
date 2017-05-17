@@ -25,6 +25,8 @@ import com.jinfukeji.waterhousekeeper.WaterHousekeeper;
 import com.jinfukeji.waterhousekeeper.activity.ChongzhiActivity;
 import com.jinfukeji.waterhousekeeper.been.ZhangdanYueBeen;
 
+import java.util.Objects;
+
 /**
  * Created by "于志渊"
  * 时间:"9:33"
@@ -35,18 +37,20 @@ import com.jinfukeji.waterhousekeeper.been.ZhangdanYueBeen;
 public class ZhangdanYueActivity extends android.support.v4.app.Fragment {
     private LinearLayout yue_chongzhi_ll;
     TextView yue_tv;
-    String url_zdye,xunlie_num;
+    String url_zdye,xulie_num;
     ZhangdanYueBeen yueBeen;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_zhangdan_yue,null);
-        SharedPreferences sp=getActivity().getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xunlie_num=sp.getString("xulie_num","");
-        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+        SharedPreferences sp=getActivity().getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
+        xulie_num=sp.getString("xulie_num","0");
+        SharedPreferences ap=getActivity().getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+        WaterHousekeeper.getIntance().setSerialNumber(ap.getString("waterhousenum",""));
+        if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
             Toast.makeText(getContext(),"请先配置序列号",Toast.LENGTH_LONG).show();
         }
-        url_zdye=WaterHousekeeper.getUrlMain()+"device/query?serialNumber="+xunlie_num;
+        url_zdye=WaterHousekeeper.getUrlMain()+"device/query?serialNumber="+xulie_num;
         Log.e("zdye_url",url_zdye);
         initData();
         initView(view);
@@ -55,7 +59,7 @@ public class ZhangdanYueActivity extends android.support.v4.app.Fragment {
     }
 
     private void initData() {
-        if (!(WaterHousekeeper.getIntance().getSerialNumber() == null)){
+        if (Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
             RequestQueue queue= Volley.newRequestQueue(getContext());
             StringRequest request=new StringRequest(Request.Method.GET, url_zdye,
                     new Response.Listener<String>() {

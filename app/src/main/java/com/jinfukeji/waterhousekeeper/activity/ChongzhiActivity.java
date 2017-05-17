@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -24,6 +23,7 @@ import com.jinfukeji.waterhousekeeper.weixin.WXPay;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by "于志渊"
@@ -44,12 +44,15 @@ public class ChongzhiActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chongzhi);
-        SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xulie_num=sp.getString("xulie_num","");
-        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+        SharedPreferences sp=getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
+        xulie_num=sp.getString("xulie_num","0");
+        SharedPreferences ap=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+        WaterHousekeeper.getIntance().setSerialNumber(ap.getString("waterhousenum",""));
+        if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
             Toast.makeText(ChongzhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
         }
         initView();
+        initData();
         initOncliak();
     }
 
@@ -76,12 +79,11 @@ public class ChongzhiActivity extends AppCompatActivity{
         lijichongzhi_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               initData();
                 if (TextUtils.isEmpty(jine_num)){
                     Toast.makeText(ChongzhiActivity.this,"充值钱数不能为空",Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
                     Toast.makeText(ChongzhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -123,7 +125,6 @@ public class ChongzhiActivity extends AppCompatActivity{
         });
     }
 
-    @NonNull
     private void initData() {
         this.findViewById(R.id.zhongzhi_5481_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,8 +135,7 @@ public class ChongzhiActivity extends AppCompatActivity{
         this.findViewById(R.id.zhongzhi_9782_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                jine_num="978";
-                zhifu_tv.setText(jine_num+"元");
+                Toast.makeText(ChongzhiActivity.this,"该规格暂未开放",Toast.LENGTH_SHORT).show();
             }
         });
         this.findViewById(R.id.zhongzhi_12983_btn).setOnClickListener(new View.OnClickListener() {
@@ -147,7 +147,8 @@ public class ChongzhiActivity extends AppCompatActivity{
         this.findViewById(R.id.zhongzhi_10881_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ChongzhiActivity.this,"该规格暂未开放",Toast.LENGTH_SHORT).show();
+                jine_num="1088";
+                zhifu_tv.setText(jine_num+"元");
             }
         });
         this.findViewById(R.id.zhongzhi_19882_btn).setOnClickListener(new View.OnClickListener() {
@@ -160,7 +161,8 @@ public class ChongzhiActivity extends AppCompatActivity{
         this.findViewById(R.id.zhongzhi_25983_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ChongzhiActivity.this,"该规格暂未开放",Toast.LENGTH_SHORT).show();
+                jine_num="2598";
+                zhifu_tv.setText(jine_num+"元");
             }
         });
         this.findViewById(R.id.zhongzhi_13881_btn).setOnClickListener(new View.OnClickListener() {
@@ -172,8 +174,7 @@ public class ChongzhiActivity extends AppCompatActivity{
         this.findViewById(R.id.zhongzhi_24882_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                jine_num="2488";
-                zhifu_tv.setText(jine_num+"元");
+                Toast.makeText(ChongzhiActivity.this,"该规格暂未开放",Toast.LENGTH_SHORT).show();
             }
         });
         this.findViewById(R.id.zhongzhi_32883_btn).setOnClickListener(new View.OnClickListener() {

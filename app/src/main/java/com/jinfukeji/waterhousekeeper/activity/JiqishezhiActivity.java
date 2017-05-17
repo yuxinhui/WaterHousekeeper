@@ -1,8 +1,10 @@
 package com.jinfukeji.waterhousekeeper.activity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -22,6 +24,8 @@ import android.widget.Toast;
 import com.jinfukeji.waterhousekeeper.R;
 import com.jinfukeji.waterhousekeeper.WaterHousekeeper;
 
+import java.util.Objects;
+
 /**
  * Created by "于志渊"
  * 时间:"10:09"
@@ -33,10 +37,14 @@ public class JiqishezhiActivity extends AppCompatActivity {
     ImageView fanhui_img;
     RelativeLayout peizhi_rl, aboutus_rl, fuwuphone_rl, jiqishezhi_guzhang_rl;
     TextView chanpinxuliehao_tv;
-
+    String xulie_num;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sp=getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
+        xulie_num=sp.getString("xulie_num","0");
+        SharedPreferences ap=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+        WaterHousekeeper.getIntance().setSerialNumber(ap.getString("waterhousenum",""));
         setContentView(R.layout.activity_jiqishezhi);
         initView();
         initOnclick();
@@ -168,8 +176,8 @@ public class JiqishezhiActivity extends AppCompatActivity {
         fuwuphone_rl= (RelativeLayout) this.findViewById(R.id.jiqishezhi_fuwunum_rl);
         jiqishezhi_guzhang_rl= (RelativeLayout) this.findViewById(R.id.jiqishezhi_guzhang_rl);
         chanpinxuliehao_tv= (TextView) this.findViewById(R.id.chanpinxuliehao_tv);
-        if (WaterHousekeeper.getIntance().getSerialNumber() != null){
-            chanpinxuliehao_tv.setText(WaterHousekeeper.getIntance().getSerialNumber());
+        if (Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
+            chanpinxuliehao_tv.setText(xulie_num);
         }
     }
 

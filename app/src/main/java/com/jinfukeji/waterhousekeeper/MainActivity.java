@@ -28,6 +28,8 @@ import com.jinfukeji.waterhousekeeper.been.DeviceCheckBeen;
 import com.jinfukeji.waterhousekeeper.fragment.MenuLeftFragment;
 import com.nineoldandroids.view.ViewHelper;
 
+import java.util.Objects;
+
 /**
  *系统主界面
  */
@@ -45,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (WaterHousekeeper.getIntance().getSerialNumber() == null){
-            Toast.makeText(MainActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
-        }
+        SharedPreferences ap=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+        WaterHousekeeper.getIntance().setSerialNumber(ap.getString("waterhousenum",""));
         fm=getSupportFragmentManager();
         initView();//控件初始化
         initClick();//点击事件
@@ -57,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //设备检测
-    private void deviceCheck() {
-        SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xulie_num=sp.getString("xulie_num","");
+    public void deviceCheck() {
+        SharedPreferences sp=getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
+        xulie_num=sp.getString("xulie_num","0");
+        Log.e("start",xulie_num);
         url_deviceCheck=WaterHousekeeper.getUrlMain()+"deviceCheck/query?serialNumber="+xulie_num;
         Log.e("url_deviceCheck",url_deviceCheck);
         clearImgAndTxt();
@@ -101,13 +103,15 @@ public class MainActivity extends AppCompatActivity {
                                     jiqiyichang_img.setImageResource(R.mipmap.jiqiyicahng_cai);
                                     jiqiyichang_txt.setTextColor(blue);
                                 }
+                            }else {
+                                Toast.makeText(MainActivity.this,"设备号不存在,请配置序列号",Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(MainActivity.this,"请检查网络连接",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"请检查网络连接",Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(request);
@@ -212,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
         kaiguan_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(), xulie_num)){
                     Toast.makeText(MainActivity.this,"请先配置序列号",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -220,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
         shuaxin_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(), xulie_num)){
                     Toast.makeText(MainActivity.this,"请先配置序列号",Toast.LENGTH_SHORT).show();
                 }
             }

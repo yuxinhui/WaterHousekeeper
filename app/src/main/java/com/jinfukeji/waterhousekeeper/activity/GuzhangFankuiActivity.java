@@ -25,6 +25,8 @@ import com.jinfukeji.waterhousekeeper.R;
 import com.jinfukeji.waterhousekeeper.WaterHousekeeper;
 import com.jinfukeji.waterhousekeeper.been.GuzhangFankuiBeen;
 
+import java.util.Objects;
+
 /**
  * Created by "于志渊"
  * 时间:"10:26"
@@ -36,13 +38,15 @@ public class GuzhangFankuiActivity extends AppCompatActivity {
     private EditText content_et;
     private Button guzhang_tijiao_btn;
     private ImageView fanhui_img;
-    String content,xulie;
+    String content,xulie_num;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guzhang);
-        SharedPreferences sp=getSharedPreferences("peizhi_xulie", Context.MODE_PRIVATE);
-        xulie=sp.getString("xulie_num","");
+        SharedPreferences sp=getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
+        xulie_num=sp.getString("xulie_num","0");
+        SharedPreferences ap=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+        WaterHousekeeper.getIntance().setSerialNumber(ap.getString("waterhousenum",""));
         initView();//控件初始化
         initData();
         initOnclick();//点击事件
@@ -71,11 +75,11 @@ public class GuzhangFankuiActivity extends AppCompatActivity {
                     content_et.requestFocus();
                     return;
                 }
-                if (WaterHousekeeper.getIntance().getSerialNumber() == null){
+                if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
                     Toast.makeText(GuzhangFankuiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
                     return;
                 }
-                String url_guzhang= WaterHousekeeper.getUrlMain()+"feedback/addFeedback?serialNumber="+xulie+
+                String url_guzhang= WaterHousekeeper.getUrlMain()+"feedback/addFeedback?serialNumber="+xulie_num+
                         "&content="+content;
                 Log.e("url_guzhang",url_guzhang);
                 guzhangfankui(url_guzhang);
