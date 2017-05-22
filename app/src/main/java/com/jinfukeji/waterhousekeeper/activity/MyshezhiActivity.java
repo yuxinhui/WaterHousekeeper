@@ -59,7 +59,7 @@ public class MyshezhiActivity extends AppCompatActivity{
         SharedPreferences ap=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
         WaterHousekeeper.getIntance().setSerialNumber(ap.getString("waterhousenum",""));
         if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
-            Toast.makeText(MyshezhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+            Toast.makeText(MyshezhiActivity.this,"请先配置序列号",Toast.LENGTH_SHORT).show();
         }
         initView();
         initOnclick();

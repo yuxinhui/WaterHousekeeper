@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,12 +40,30 @@ public class MainActivity extends AppCompatActivity {
     ImageView kaiguan_img,shuaxin_img,jiqizhishui_img,jiqishuiman_img,jiqiqueshui_img,jiqiok_img,jiqiguzhang_img,jiqiyichang_img;
     TextView jiqizhishui_txt,jiqishuiman_txt,jiqiqueshui_txt,jiqiok_txt,jiqiguzhang_txt,jiqiyichang_txt;
     Button chongxi_btn;
-    private DrawerLayout main_dl;
+    public DrawerLayout main_dl;
     private FragmentManager fm;
     MenuLeftFragment fg_left_menu;
     String url_deviceCheck,xulie_num;
     DeviceCheckBeen checkBeen=new DeviceCheckBeen();
     int blue=0xFF3FA8F4,hui=0xFF828282;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    public int[] colors=new int[]{android.R.color.holo_blue_bright,android.R.color.holo_green_light,
+            android.R.color.holo_orange_light,android.R.color.holo_red_light};
+    private static final int REFRESH_COMPLETE = 0X110;
+    //刷新界面
+    Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case REFRESH_COMPLETE:
+                    SharedPreferences ap1=getSharedPreferences("firstnum",Context.MODE_PRIVATE);
+                    WaterHousekeeper.getIntance().setSerialNumber(ap1.getString("waterhousenum",""));
+                    deviceCheck();
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,13 +76,25 @@ public class MainActivity extends AppCompatActivity {
         if (WaterHousekeeper.getIntance().getSerialNumber() != null){
             deviceCheck();//设备检测
         }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.currentThread().isInterrupted()){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                    main_dl.postInvalidate();
+                }
+            }
+        }).start();
     }
 
     //设备检测
     public void deviceCheck() {
         SharedPreferences sp=getSharedPreferences(WaterHousekeeper.getFilename(), Context.MODE_PRIVATE);
         xulie_num=sp.getString("xulie_num","0");
-        Log.e("start",xulie_num);
         url_deviceCheck=WaterHousekeeper.getUrlMain()+"deviceCheck/query?serialNumber="+xulie_num;
         Log.e("url_deviceCheck",url_deviceCheck);
         clearImgAndTxt();
@@ -154,6 +187,15 @@ public class MainActivity extends AppCompatActivity {
         jiqiok_txt= (TextView) this.findViewById(R.id.jiqiok_txt);
         jiqiyichang_txt= (TextView) this.findViewById(R.id.jiqiyichang_txt);
         jiqiguzhang_txt= (TextView) this.findViewById(R.id.jiqiguzhang_txt);
+
+        mSwipeRefreshLayout=(SwipeRefreshLayout)findViewById(R.id.swipe_rl);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE,3000);
+            }
+        });
+        mSwipeRefreshLayout.setColorScheme(colors);
     }
 
     //点击事件

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -39,6 +40,7 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
     private ArrayList<ZhangdanJiluBeen.MessageBean> messageBeen=new ArrayList<ZhangdanJiluBeen.MessageBean>();
     ZhangdanJiluBeen mJiluBeen=new ZhangdanJiluBeen();
     ListView zhangdan_jilu_lv;
+    TextView zonge1_tv;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,7 +56,19 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
         Log.e("url_zdjl",url_zdjl);
         initData();
         initView(view);//初始化控件
+        if (Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
+            chongzhizonge();//充值总额
+        }
         return view;
+    }
+
+    //充值总额
+    private void chongzhizonge() {
+        double zonge=0;
+        for (int a=0;a<mJiluBeen.getMessage().size();a++){
+            zonge=zonge+messageBeen.get(a).getMoney();
+        }
+        zonge1_tv.setText(String.valueOf(zonge));
     }
 
     //初始化控件
@@ -62,6 +76,7 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
         zhangdan_jilu_lv= (ListView) view.findViewById(R.id.zhangdan_jilu_lv);
         mJiluAdapter=new ZhangdanJiluAdapter(messageBeen,getContext());
         zhangdan_jilu_lv.setAdapter(mJiluAdapter);
+        zonge1_tv= (TextView) view.findViewById(R.id.zonge1_tv);
     }
 
     private void initData() {
@@ -77,8 +92,8 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
                                 if ("fail".equals(mJiluBeen.getStatus())){
                                     Toast.makeText(getContext(),"目前还没有记录",Toast.LENGTH_SHORT).show();
                                 }else {
-                                    ZhangdanJiluBeen.MessageBean messageBeen1=mJiluBeen.getMessage();
-                                    messageBeen.add(messageBeen1);
+                                    ArrayList<ZhangdanJiluBeen.MessageBean> messageBeen1= (ArrayList<ZhangdanJiluBeen.MessageBean>) mJiluBeen.getMessage();
+                                    messageBeen.addAll(messageBeen1);
                                     mJiluAdapter.notifyDataSetChanged();
                                 }
                             }

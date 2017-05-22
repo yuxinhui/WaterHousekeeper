@@ -65,7 +65,7 @@ public class ZhangdanJiluAdapter extends BaseAdapter {
             viewHolder= (ViewHolder) view.getTag();
         }
         final ZhangdanJiluBeen.MessageBean messageBean=getItem(i);
-        int money=messageBean.getMoney();
+        double money=messageBean.getMoney();
         DecimalFormat df=new DecimalFormat("0.00");
         viewHolder.item_jilu_money_tv.setText("-"+df.format(money));
         if ("0".equals(messageBean.getPayway())){

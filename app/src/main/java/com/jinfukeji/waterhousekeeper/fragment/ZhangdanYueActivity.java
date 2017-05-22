@@ -69,7 +69,7 @@ public class ZhangdanYueActivity extends android.support.v4.app.Fragment {
                                 Gson gson=new Gson();
                                 yueBeen=gson.fromJson(s,ZhangdanYueBeen.class);
                                 if ("ok".equals(yueBeen.getStatus())){
-
+                                    yue_tv.setText(String.valueOf(yueBeen.getMessage().getBalance()));
                                 }else {
                                     Toast.makeText(getContext(),"还未充值过",Toast.LENGTH_SHORT).show();
                                 }

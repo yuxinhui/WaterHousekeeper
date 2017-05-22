@@ -87,7 +87,7 @@ public class ChongzhiActivity extends AppCompatActivity{
                     Toast.makeText(ChongzhiActivity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
                     return;
                 }
-                url_chongzhi= WaterHousekeeper.getUrlMain()+"order/pay?cashnum="+jine_num+"&serialNumber="+xulie_num;
+                url_chongzhi= WaterHousekeeper.getUrlMain()+"order/pay?cashnum="+"0.01"+"&serialNumber="+xulie_num;
                 Log.e("url_chongzhi",url_chongzhi);
                 postData.put("cashnum",jine_num);
                 HttpUtils.httpPost(ChongzhiActivity.this, url_chongzhi, postData, new StringCallback() {

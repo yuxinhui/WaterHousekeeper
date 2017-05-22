@@ -24,7 +24,7 @@ import java.util.Objects;
  */
 
 public class ChongxiAcitity extends AppCompatActivity{
-    ImageView fanhui_img;
+    ImageView fanhui_img,chongxi1,chongxi2,chongxi3,chongxi4,chongxi5;
     Button chongxi_btn;
     String xulie_num;
     @Override
@@ -54,7 +54,13 @@ public class ChongxiAcitity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if (!Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(), xulie_num)){
-                    Toast.makeText(ChongxiAcitity.this,"请先配置序列号",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChongxiAcitity.this,"请先配置序列号",Toast.LENGTH_SHORT).show();
+                }else {
+                    chongxi1.setImageResource(R.drawable.lvxinbtnstyle);
+                    chongxi2.setImageResource(R.drawable.lvxinbtnstyle);
+                    chongxi3.setImageResource(R.drawable.lvxinbtnstyle);
+                    chongxi4.setImageResource(R.drawable.lvxinbtnstyle);
+                    chongxi5.setImageResource(R.drawable.lvxinbtnstyle);
                 }
             }
         });
@@ -64,5 +70,10 @@ public class ChongxiAcitity extends AppCompatActivity{
     private void initView() {
         fanhui_img= (ImageView) this.findViewById(R.id.fanhui_img);
         chongxi_btn= (Button) this.findViewById(R.id.chongxi_btn);
+        chongxi1= (ImageView) this.findViewById(R.id.chongxi_1);
+        chongxi2= (ImageView) this.findViewById(R.id.chongxi_2);
+        chongxi3= (ImageView) this.findViewById(R.id.chongxi_3);
+        chongxi4= (ImageView) this.findViewById(R.id.chongxi_4);
+        chongxi5= (ImageView) this.findViewById(R.id.chongxi_5);
     }
 }
