@@ -56,9 +56,6 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
         Log.e("url_zdjl",url_zdjl);
         initData();
         initView(view);//初始化控件
-        if (Objects.equals(WaterHousekeeper.getIntance().getSerialNumber(),xulie_num)){
-            chongzhizonge();//充值总额
-        }
         return view;
     }
 
@@ -95,6 +92,7 @@ public class ZhangdanJiluActivity extends android.support.v4.app.Fragment {
                                     ArrayList<ZhangdanJiluBeen.MessageBean> messageBeen1= (ArrayList<ZhangdanJiluBeen.MessageBean>) mJiluBeen.getMessage();
                                     messageBeen.addAll(messageBeen1);
                                     mJiluAdapter.notifyDataSetChanged();
+                                    chongzhizonge();//充值总额
                                 }
                             }
                         }
